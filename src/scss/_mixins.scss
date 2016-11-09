@@ -2,20 +2,21 @@
     $bp_min: 320px;
     $bp_smaller: 400px;
     $bp_small: 768px;
-    $bg_large: 1024px;
+    //$bg_large: 1024px;
+    $bg_large: 1200px;
 
     @if $media==mobile {
-        @media only screen and (min-width: $bp_min) and (max-width: $bp_small - 1px) {@content;}  
+        @media only screen and (min-width: $bp_min) and (max-width: $bp_small - 1px) {@content;}
     } @else if $media==small-mobile {
-        @media only screen and (min-width: $bp_min) and (max-width: $bp_smaller - 1px) {@content;}  
+        @media only screen and (min-width: $bp_min) and (max-width: $bp_smaller - 1px) {@content;}
     } @else if $media==tablet {
-        @media only screen and (min-width: $bp_small) and (max-width: $bg_large - 1px) {@content;}  
+        @media only screen and (min-width: $bp_small) and (max-width: $bg_large - 1px) {@content;}
     } @else if $media==desktop {
-        @media only screen and (min-width: $bg_large) {@content;}  
+        @media only screen and (min-width: $bg_large) {@content;}
     } @else if $media==no-mobile {
-        @media only screen and (min-width: $bp_small) {@content;}  
+        @media only screen and (min-width: $bp_small) {@content;}
     } @else if $media==touch {
-        @media only screen and (max-width: $bg_large) {@content;}  
+        @media only screen and (max-width: $bg_large) {@content;}
     }
 }   
 /* 
@@ -217,7 +218,7 @@ Usage
 }
 
 @mixin site_width {
-    max-width: 1200px;
+    max-width: 1150px;
     margin: 0 auto;
 
     @include respond-to(tablet) {
@@ -226,7 +227,7 @@ Usage
     }
 
     @include respond-to(mobile) {
-        padding: 0 15px;
+        //padding: 0 15px;
     }
 }
 

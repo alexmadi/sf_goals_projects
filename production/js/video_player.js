@@ -10,9 +10,8 @@ first_start = true;
 
         return this.each(function() {
             // start inner code 
-
-            var video_id = $(this).attr('id');
-            var video_wrap_class = video_id + '_wrapper' ;           
+            var video_id = $(this).attr('id'),
+                video_wrap_class = video_id + '_wrapper';
 
             $(this).wrap("<div class='mediaplayer mediaplayer_normal_size mediaplayer_stopped'></div>");
             $(this).parent('.mediaplayer').wrap("<div class='player'></div>");
@@ -57,7 +56,7 @@ first_start = true;
 
 
             if (window.webshim) {
-                (function () {                    
+                (function () {
                     webshim.setOptions('mediaelement', {
                         replaceUI: 'auto'
                     });
@@ -175,23 +174,20 @@ first_start = true;
                         $(this).closest('.mediaplayer').removeClass('mediaplayer_playing');
                         $(this).closest('.mediaplayer').addClass('mediaplayer_paused');
 
-                         if ($.browser.mozilla) {  
+                         if ($.browser.mozilla) {
                             $(this).removeClass('active');
-                            $('play').addClass('active');   
+                            $('play').addClass('active');
                         }
-                    });        
- 
+                    });
 
-                    $video_wrapper.click(function() { 
-         
+                    $video_wrapper.click(function() {
                        if ($.browser.mozilla) {
-                            $("video").click(); 
+                            $("video").click();
                       
                             if (($('mediaplayer').hasClass('mediaplayer_paused')) && ($('mediaplayer').hasClass('mediaplayer_stopped'))) {
-                                 $('.play').addClass('active');                   
+                                 $('.play').addClass('active');
                             }
-
-                       }  
+                       }
 
                         if ($(this).hasClass('mediaplayer_paused'))
                         {
@@ -199,136 +195,133 @@ first_start = true;
                             
                             $(this).closest('.player').find('.play_btn').removeClass('active_pause');
                             $(this).closest('.player').find('.play_btn').addClass('active_play');
-                            $(this).find('video, audio', player)[0].play();       
+                            $(this).find('video, audio', player)[0].play();
 
 
-                            if ($.browser.mozilla) {    
-
+                            if ($.browser.mozilla) {
                                 $('.pause').removeClass('active'); 
                                 $('.play').addClass('active');
                                 $('.play_btn').removeClass('active_play active_pause');
 
                             }
-                        
-                        } 
+                        }
                         else if ($(this).hasClass('mediaplayer_stopped'))  {
 
                             $(this).find('video, audio', player)[0].play();
                             $(this).removeClass('mediaplayer_stopped');
-                            $(this).addClass('mediaplayer_playing');             
+                            $(this).addClass('mediaplayer_playing');
                             
                             $(this).closest('.player').find('.play_btn').removeClass('active_pause');
                             $(this).closest('.player').find('.play_btn').addClass('active_play');
                 
-                  
-                            if ($.browser.mozilla) {                    
+                            if ($.browser.mozilla) {
 
                                 $('.mediaplayer').removeClass('mediaplayer_paused');
-                                $('.mediaplayer').addClass('mediaplayer_playing');    
-                                $('.play_btn').addClass('active_play');                                      
-                                $('.pause').addClass('active');       
+                                $('.mediaplayer').addClass('mediaplayer_playing');
+                                $('.play_btn').addClass('active_play');
+                                $('.pause').addClass('active');
                             }
                         }
-                        else 
+                        else
                         {
                             $(this).addClass('mediaplayer_paused').removeClass('mediaplayer_playing');
                             $(this).closest('.player').find('.play_btn').removeClass('active_play');
                             $(this).closest('.player').find('.play_btn').addClass('active_pause');
-                            $(this).find('video, audio', player)[0].pause();              
+                            $(this).find('video, audio', player)[0].pause();
 
                             if ($.browser.mozilla) {
                                 $('.mediaplayer').removeClass('mediaplayer_paused');
                                 $('.mediaplayer').addClass('mediaplayer_playing'); 
                                 $('.play').removeClass('active');
-                                $('.pause').addClass('active');     
-                                $('video, audio', player)[0].pause();                
-                            }                              
-                        }                       
-                    }); 
+                                $('.pause').addClass('active');
+                                $('video, audio', player)[0].pause();
+                            }
+                        }
+                    });
 
                     $('.full_screen_input').click(function() {
-                      if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
-                       (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-                        if (document.documentElement.requestFullScreen) {  
-                          document.documentElement.requestFullScreen();  
-                        } else if (document.documentElement.mozRequestFullScreen) {  
-                          document.documentElement.mozRequestFullScreen();  
-                        } else if (document.documentElement.webkitRequestFullScreen) {  
-                          document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
-                        }  
-                      } else {  
-                        if (document.cancelFullScreen) {  
-                          document.cancelFullScreen();  
-                        } else if (document.mozCancelFullScreen) {  
-                          document.mozCancelFullScreen();  
-                        } else if (document.webkitCancelFullScreen) {  
-                          document.webkitCancelFullScreen();  
-                        }  
-                      }  
+                        if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                            (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                        if (document.documentElement.requestFullScreen) {
+                            document.documentElement.requestFullScreen();
+                        } else if (document.documentElement.mozRequestFullScreen) {
+                            document.documentElement.mozRequestFullScreen();
+                        } else if (document.documentElement.webkitRequestFullScreen) {
+                            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                        }
+                    } else {
+                        if (document.cancelFullScreen) {
+                            document.cancelFullScreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitCancelFullScreen) {
+                            document.webkitCancelFullScreen();
+                        }
+                    }
                     });
 
                     $video_wrapper.dblclick(function() {
-                      if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
-                       (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-                        if (document.documentElement.requestFullScreen) {  
-                          document.documentElement.requestFullScreen();  
-                        } else if (document.documentElement.mozRequestFullScreen) {  
-                          document.documentElement.mozRequestFullScreen();  
-                        } else if (document.documentElement.webkitRequestFullScreen) {  
-                          document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
-                        }  
-                      } else {  
-                        if (document.cancelFullScreen) {  
-                          document.cancelFullScreen();  
-                        } else if (document.mozCancelFullScreen) {  
-                          document.mozCancelFullScreen();  
-                        } else if (document.webkitCancelFullScreen) {  
-                          document.webkitCancelFullScreen();  
-                        }  
-                      }  
+                        if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                            (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                        if (document.documentElement.requestFullScreen) {
+                            document.documentElement.requestFullScreen();
+                        } else if (document.documentElement.mozRequestFullScreen) {
+                            document.documentElement.mozRequestFullScreen();
+                        } else if (document.documentElement.webkitRequestFullScreen) {
+                            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                        }
+                        } else {
+                        if (document.cancelFullScreen) {
+                            document.cancelFullScreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitCancelFullScreen) {
+                            document.webkitCancelFullScreen();
+                        }
+                        }
                     });
 
                     // $('.volume-slider').mousedown(function() {
                     //      $(this).attr("max",1);
                     //      $(this).attr("value",1);
-                    //      $(this).val(1);                
+                    //      $(this).val(1);
                     // });
 
-                    $('.volume-slider').change(function () {  
-                     
-                      val = $(this).val();  
-                      $ic_volume = $(this).closest('.control_panel').find('.ic_volume');
-                      if ((val < 0.66) && (val !== 0)) {
-                      $ic_volume.addClass('v_66');
-                      } else if (val >= 0.66) {
-                      $ic_volume.removeClass('v_66');
-                      } 
-                      if ((val < 0.33) && (val !== 0)) {
-                      $ic_volume.addClass('v_33');
-                      } else if (val >= 0.33) {
-                      $ic_volume.removeClass('v_33');
-                      } 
-                      if (val == 0) {
-                      $ic_volume.removeClass('on v_33 v_66 ').addClass('mute');
-                      } 
-                      if ((val > 0) && ($ic_volume.hasClass('mute'))) {
-                     $ic_volume.removeClass('mute').addClass('on');
-                      }
-                    }); 
+                    $('.volume-slider').change(function () {
+                        val = $(this).val();
+                        $ic_volume = $(this).closest('.control_panel').find('.ic_volume');
+
+                        if ((val < 0.66) && (val !== 0)) {
+                            $ic_volume.addClass('v_66');
+                        } else if (val >= 0.66) {
+                            $ic_volume.removeClass('v_66');
+                        } 
+                        if ((val < 0.33) && (val !== 0)) {
+                            $ic_volume.addClass('v_33');
+                        } else if (val >= 0.33) {
+                            $ic_volume.removeClass('v_33');
+                        } 
+                        if (val == 0) {
+                            $ic_volume.removeClass('on v_33 v_66 ').addClass('mute');
+                        } 
+                        if ((val > 0) && ($ic_volume.hasClass('mute'))) {
+                            $ic_volume.removeClass('mute').addClass('on');
+                        }
+                    });
 
                 
                     if($.browser.chrome){
                         $(window).keypress(function (e) {
                             if (e.keyCode === 0 || e.keyCode === 32) {
-                                e.preventDefault();   
+                                e.preventDefault();
 
-                                 if (($('.mediaplayer').hasClass('mediaplayer_paused')) || ($('.mediaplayer').hasClass('mediaplayer_stopped'))) {                    
+                                 if (($('.mediaplayer').hasClass('mediaplayer_paused')) || ($('.mediaplayer').hasClass('mediaplayer_stopped'))) {
                                     $('video, audio', player)[0].play(); 
                                     $('.mediaplayer').removeClass('mediaplayer_stopped mediaplayer_paused');
                                     $('.mediaplayer').addClass('mediaplayer_playing');
                                     $('.play_btn').removeClass('active_pause');
                                     $('.play_btn').addClass('active_play');
-                                    $('.control_panel').fadeOut(6000);             
+                                    $('.control_panel').fadeOut(6000);
 
                                 } else if ($('.mediaplayer').hasClass('mediaplayer_playing')) {
                                     $('video, audio', player)[0].pause();
@@ -338,14 +331,14 @@ first_start = true;
                                 }
                             }
                         }) 
-                    }     
+                    }
+
                     $(document).keyup(function(e) {
-              
-                      if (e.keyCode === 27) {
-                        if ($am_player_container.hasClass('full_screen_on')) {
-                            $am_player_container.removeClass('full_screen_on');             
+                        if (e.keyCode === 27) {
+                            if ($am_player_container.hasClass('full_screen_on')) {
+                                $am_player_container.removeClass('full_screen_on');
+                            }
                         }
-                      }
                     });
 
                     $('input.muted', player).bind('click updatemuted', function () {
@@ -430,9 +423,6 @@ first_start = true;
 
             // MINE CODE
 
-          
-
-
             $(document).ready(function() {
 
                 $(".ic_volume" ).click(function() {
@@ -478,21 +468,17 @@ first_start = true;
                 //     }
                 // });
 
-                console.log(first_start);
                 if (first_start) {
                     $('.mediaplayer').dblclick(function(e) { 
                         if ($(this).hasClass('mediaplayer_full')) {
                             $(this).addClass('mediaplayer_normal_size').removeClass('mediaplayer_full');
                             $(this).parent().removeClass('full_screen_on');
                             $(this).parent().find('.full_screen_btn').removeClass('full_screen_on'); 
-                            console.log('full_screen_off', e.target);
-                        }     
+                        }
                         else {
                            $(this).addClass('mediaplayer_full').removeClass('mediaplayer_normal_size');
                            $(this).parent().addClass('full_screen_on');
                            $(this).parent().find('.full_screen_btn').addClass('full_screen_on'); 
-
-                            console.log('full_screen_on', e.target);
                         }
                     });
                     first_start=false; 
@@ -506,9 +492,7 @@ first_start = true;
                 });
 
 
-
-
-                var time_slider_width = $('.time-slider').width();  
+                var time_slider_width = $('.time-slider').width();
                 var sprites_count = settings.sprites_count;
                 var sprite_step = settings.sprite_step;
 
@@ -524,7 +508,7 @@ first_start = true;
                                 
                     var position_left = $am_player_container.find('.time-slider').offset().left;
                     var mouse_position = offset_left - position_left;                   
-                    //var mouse_position_perc = ((mouse_position/time_slider_width)*100).toFixed(2) + '%';                  
+                    //var mouse_position_perc = ((mouse_position/time_slider_width)*100).toFixed(2) + '%';
                     var tooltip_width = $('.screen_tooltip').width();
                     var fixed_toolt_pos = ((offset + tooltip_width/2)*-1);
                     $am_player_container.find('.screen_tooltip').css({ 
@@ -549,10 +533,7 @@ first_start = true;
                     $(".screen_tooltip").show();
                 });
 
-                     
             });  // end docready
-
-
 
             var SecondsTohhmmss = function(totalSeconds) {
               var hours   = Math.floor(totalSeconds / 3600);
@@ -592,12 +573,11 @@ first_start = true;
                 $am_player_container.find('.control_panel').show(0);
                 timedelay = 1;
                 clearInterval(_delay);
-                _delay = setInterval(delayCheck, 600);               
+                _delay = setInterval(delayCheck, 600);
             });
             // page loads starts delay timer 
             _delay = setInterval(delayCheck, 600);
 
- 
             // end inner code
 
             $am_player = $(this); 
@@ -610,10 +590,10 @@ first_start = true;
                $.extend(settings, options);
             } 
         });
-    };        
+    };
 })(jQuery);
 
- 
+
 // function updateVolume(val) { 
 //     document.getElementById('volume-slider').value=val; 
 
@@ -644,7 +624,7 @@ usage
 2.call Am_player
 
 $('.slider_1').Am_player({
-                     
+
 }); 
 
 */

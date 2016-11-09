@@ -9,6 +9,8 @@ body {
 .main {
     @include site_width;
     @include clearfix;
+
+    padding: 40px 0;
 }
 
 a {

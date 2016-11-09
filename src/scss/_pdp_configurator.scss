@@ -5,18 +5,34 @@
 .product_images_container {
     width: 810px;
     float: left;
+
+    @include respond-to(tablet) {
+        width: 645px;
+    }
 }
 
 .secondary_content {
-    width: 350px;
+    width: 300px;
     float: right;
+
+    @include respond-to(tablet) {
+        width: calc(95% - 645px);
+    }
 }
 
 .product_primary_image_wrap {
     position: relative;
-    float: left;
-    margin-left: 15px;
+    float: right;
+    
     border: 1px solid #000;
+
+    @include respond-to(desktop) {
+        margin-left: 15px;
+    }
+
+    @include respond-to(tablet) {
+        margin-bottom: 20px;
+    }
 
     .product_primary_image {
         overflow: hidden;
@@ -28,19 +44,53 @@
         display: block;
         width: 100%;
         position: relative;
+        cursor: -moz-zoom-in;
+        cursor: -webkit-zoom-in;
+        cursor: zoom-in;
 
         &.zoomed {
             width: auto;
+            cursor: -moz-zoom-out;
+            cursor: -webkit-zoom-out;
+            cursor: zoom-out;
         }
     }
 }
 
+.product_images_section {
+    @include clearfix;
+}
+
 .product_thumbnails {
-    width: 150px;
-    float: left;
+    @include respond-to(desktop) {
+        width: 150px;
+        float: left;
+    }
+
+    @include respond-to(tablet) {
+        clear: both;
+    }
 
     .thumb {
-        margin-bottom: 13px;
+        border: 1px solid transparent;
+
+        @include respond-to(desktop) {
+            margin-bottom: 14px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @include respond-to(tablet) {
+            float: left;
+            margin-left: 1.5px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
         cursor: pointer;
 
         img {
@@ -98,7 +148,7 @@
 
 .product_img_next {
     right: 10px;
-    
+
     &:after {
         top: 17px;
         right: 8px;
@@ -125,7 +175,7 @@
     text-transform: uppercase;
     margin: 0 0 10px;
     color: #616365;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .swatch-item {
@@ -152,6 +202,7 @@
 .product-variations {
     .label {
         color: #616365;
+        margin-bottom: 10px;
     }
 }
 

@@ -13,8 +13,8 @@
         <li>
             <img src="img/slider_img_4.jpg" />
         </li>
-    </ul>   
-</div> 
+    </ul>
+</div>
 
 <div class="slider_2 am_slider_outer">
     <ul>
@@ -30,11 +30,10 @@
         </li>
         <li>
             <img src="img/slider2_img_4.jpg" />
+            <div class="am_slider_content">Last Slide</div>
         </li>
-    </ul>   
-</div> 
-
-<script src="js/slider.js"></script>
+    </ul>
+</div>
 
 <script>
     $('.slider_1').Am_slider({
@@ -43,12 +42,13 @@
         pag: true,
         controls: true,
         mouseDrag: true,
-        // touchDrag: true,
+        touchDrag: false
     }); 
     $('.slider_2').Am_slider({
         autoplay: false,
-        speed: 2000,
+        speed: 3000,
         pag: true,
         controls: true,
+        touchDrag: true
     });
 </script>
