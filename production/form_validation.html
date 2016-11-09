@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title>form_validation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+    <style>
+        .required {
+            color: red;
+            display: none;
+        }
+        .required.active {
+            display: block;
+
+        }
+    </style>
+    
+</head>
+    <body>
+        <div class="header">
+            <a href="index.html">Slider</a>
+            <a href="video_player.html">Video Player</a>
+            <a href="pdp_configurator.html">PDP Configurator</a>
+            <a href="form_validation.html">Product form validation</a>
+        </div>
+    
+        <div class="main">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-md-12">
+                         <h2>Product List</h2>
+                         <table class="table table-bordered">
+                             <thead>
+                             <tr>
+                                 <th>#SKU</th>
+                                 <th>Product Name</th>
+                                 <th>Price</th>
+                                 <th>Description</th>
+                                 <th>Is available</th>
+                             </tr>
+                             </thead>
+                             <tbody id="products-list">
+                             <tr>
+                                 <th scope="row">D33H1</th>
+                                 <td>Macbook pro 13 inch</td>
+                                 <td>1500$</td>
+                                 <td>13-inch MacBook Pro with Retina display</td>
+                                 <td>In-stock</td>
+                             </tr>
+                             </tbody>
+                         </table>
+             
+                         <h2>Add new Product</h2>
+                         <form action="/" id="add-product-form" name="addproductform">
+                             <div class="form-group">
+                                 <div class="input-group">
+                                     <label for="pTitle">Product title</label>
+                                     <input type="pTitle" class="form-control" id="pTitle">
+                                 </div>
+                                 <span class="required">This field is required</span>
+                             </div>
+                             <div class="row">
+                                 <div class="col-xs-2">
+                                     <div class="form-group">
+                                         <label for="pSKU">Product SKU</label>
+                                         <div class="input-group">
+                                             <div class="input-group-addon">#</div>
+                                             <input type="pSKU" class="form-control" id="pSKU">                                  
+                                         </div>
+                                         <span class="required">This field is required</span>
+                                     </div>
+                                 </div>
+                             </div> 
+             
+                             <div class="row">
+                                 <div class="col-xs-2">
+                                     <div class="form-group">
+                                         <label for="pSKU">Product Price</label>
+                                         <div class="input-group">
+                                             <div class="input-group-addon">$</div>
+                                             <input type="pSKU" class="form-control" id="pSKU2">
+                                         </div>
+                                         <span class="required">This field is required</span>
+                                         <span class="required invalid_num">Should be decimal number</span> 
+                                     </div>
+                                 </div>
+                             </div>
+             
+                             <div class="form-group">
+                                 <label for="pDesc">Product Description</label>
+                                 <textarea type="pDesc" class="form-control" id="pDesc"></textarea>
+                             </div>
+             
+                             <div class="form-group">
+                                 <div class="checkbox availability">
+                                     <label><input type="checkbox" id="w">Is available</label>
+                                 </div>
+                             </div>
+             
+                             <button id="addToCart" class="btn btn-success">Add Product</button>
+                         </form>
+                     </div>
+                 </div>
+             
+                 <br/>
+                 <br/>
+                 <pre>
+                 Requirements:
+                 1. Add javascript logic, which will collect all information, entered by user and add it to the "Product List"
+                 2. Add simple validation, which prevent adding wrong(empty) information about product:
+                   - title can't be empty field, min length 1 symbols
+                   - SKU can't be empty, min length 1 symbols
+                   - Price should be numeric value, available format: 100, 100.22
+                   - Product Description is optional field.
+                   - Is available (if checked), then to the product list should be added text (in stock), if unchecked, "out of stock".
+                 </pre>
+             
+             </div>
+             
+             
+             
+             <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+             <script src="js/form_validation.js" defer></script>
+        </div>
+
+        <div class="footer">
+        
+        </div> 
+        
+        <script type="text/javascript">	
+        
+        </script>
+    </body>
+</html>

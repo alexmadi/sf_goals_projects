@@ -1,0 +1,155 @@
+.am_slider_outer {
+    position: relative;
+}
+
+.am_slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.am_slider_inner {
+    width: 10000px;
+    overflow: hidden;
+}
+
+.am_slider_item {
+    position: relative;
+    float: left;
+    width: 700px;  
+    z-index: 5;
+
+    &.active {
+        z-index: 10!important;
+    }
+}
+
+.am_slider_item img {
+    width: 100%;
+    min-height: 100%;
+    display: block;
+    pointer-events: none;
+}
+.prev,
+.next {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    top: 50%; 
+    cursor: pointer;
+    margin-top: -20px;
+    font-size: 0;
+    background: 0;
+    transition: .2s;
+    z-index: 20;
+
+&:hover {
+        &:after, &:before {
+          background: #ccc;
+        }
+    }
+}
+.prev {
+    left: 5px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 17px;
+        width: 2px;
+        left: 7px;
+        background: #000;
+        height: 20px;
+        transform: rotate(-45deg);
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 8px;
+        width: 2px;
+        height: 20px;
+        transform: rotate(90deg);
+        background: #000;
+        transform: rotate(45deg);
+    }
+}
+.next {
+    right: 5px; 
+  
+    &:after {
+        content: '';
+        position: absolute;
+        top: 17px;
+        right: 8px;
+        width: 2px;
+        background: #000;
+        height: 20px;
+        transform: rotate(45deg);
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        width: 2px;
+        height: 20px;
+        transform: rotate(-90deg);
+        background: #000;
+        transform: rotate(-45deg);
+    }
+}
+
+.am_slider .am_slider_content a {
+    color: inherit;
+}
+
+.am_slider_pag {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    z-index: 20;
+    transform: translateX(-50%);
+}
+
+.am_slider_pag_item {
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 10px;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &.active {
+        background: #ccc;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.am_slider .am_slider_content {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    line-height: 30px;
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+.slider_1 {
+    width: 80%;
+    margin: 50px auto 0 auto;
+}
+.slider_2 {
+    width: 60%;
+    margin: 50px auto 50px auto;
+}

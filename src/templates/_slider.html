@@ -1,0 +1,54 @@
+<div class="slider_1 am_slider_outer">
+    <ul>
+        <li>
+            <img src="img/slider_img_1.jpg"/>
+            <div class="am_slider_content">Slide One</div>
+        </li>
+        <li>
+            <img src="img/slider_img_2.jpg" />
+        </li>
+        <li>
+            <img src="img/slider_img_3.jpg" />
+        </li>
+        <li>
+            <img src="img/slider_img_4.jpg" />
+        </li>
+    </ul>   
+</div> 
+
+<div class="slider_2 am_slider_outer">
+    <ul>
+        <li>
+            <img src="img/slider2_img_1.jpg"/>
+            <div class="am_slider_content">Slide One</div>
+        </li>
+        <li>
+            <img src="img/slider2_img_2.jpg" />
+        </li>
+        <li>
+            <img src="img/slider2_img_3.jpg" />
+        </li>
+        <li>
+            <img src="img/slider2_img_4.jpg" />
+        </li>
+    </ul>   
+</div> 
+
+<script src="js/slider.js"></script>
+
+<script>
+    $('.slider_1').Am_slider({
+        autoplay: true,
+        speed: 2500,
+        pag: true,
+        controls: true,
+        mouseDrag: true,
+        // touchDrag: true,
+    }); 
+    $('.slider_2').Am_slider({
+        autoplay: false,
+        speed: 2000,
+        pag: true,
+        controls: true,
+    });
+</script>

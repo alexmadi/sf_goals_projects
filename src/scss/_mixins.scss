@@ -1,0 +1,427 @@
+@mixin respond-to ($media) {
+    $bp_min: 320px;
+    $bp_smaller: 400px;
+    $bp_small: 768px;
+    $bg_large: 1024px;
+
+    @if $media==mobile {
+        @media only screen and (min-width: $bp_min) and (max-width: $bp_small - 1px) {@content;}  
+    } @else if $media==small-mobile {
+        @media only screen and (min-width: $bp_min) and (max-width: $bp_smaller - 1px) {@content;}  
+    } @else if $media==tablet {
+        @media only screen and (min-width: $bp_small) and (max-width: $bg_large - 1px) {@content;}  
+    } @else if $media==desktop {
+        @media only screen and (min-width: $bg_large) {@content;}  
+    } @else if $media==no-mobile {
+        @media only screen and (min-width: $bp_small) {@content;}  
+    } @else if $media==touch {
+        @media only screen and (max-width: $bg_large) {@content;}  
+    }
+}   
+/* 
+Usage
+ 
+.sidebar { 
+    width: 60%; 
+        @include respond-to(mobile) {
+    background: #000;
+    }
+}
+*/
+
+
+@mixin pseudo_absolute ($pseudo:before,$top:auto, $right:auto, $bottom:auto, $left:auto, $width:auto, $height:auto, $path:"", $x:0, $y:0, $margin:auto) {
+    &:#{$pseudo} {
+        content: '';
+        position: absolute;
+        top: $top;
+        bottom: $bottom;
+        right: $right;
+        left: $left;
+        width: $width;
+        height: $height;
+        background: url($path) $x $y no-repeat;
+        margin: $margin;
+      }
+}
+/* Usage
+.wrapper {
+
+  position: relative;  
+  @include pseudo_absolute (after,0,0,auto,auto,50px,50px,"../images/sprites.png",0,0);
+}
+*/
+
+@mixin arrow($direction,$color:#000,$size:0,$top:auto,$right:auto,$bottom:auto,$left:auto, $margin_top:auto, $margin_bottom:auto) {
+    
+    @if $direction == self {
+        display: inline-block;
+        height: 0;
+        vertical-align: middle;
+        width: 0;
+    }
+
+    @if $direction == right {
+        &:before {
+        content:'';
+        position: absolute;
+        top: $top; left: $left; right: $right; bottom: $bottom;
+        border: $size solid transparent;    
+        border-left: $size solid $color;
+        margin-top: $margin_top;
+        margin-bottom: $margin_bottom;
+        }  
+    }
+    @if $direction == left {
+        &:before {
+        content:'';
+        position: absolute;
+        top: $top; left: $left; right: $right; bottom: $bottom;
+        border: $size solid transparent;    
+        border-right: $size solid $color;
+        margin-top: $margin_top;
+        margin-bottom: $margin_bottom;
+        }  
+    } 
+    @if $direction == top {
+        &:before {
+        content:'';
+        position: absolute;
+        top: $top; left: $left; right: $right; bottom: $bottom;
+        border: $size solid transparent;    
+        border-bottom: $size solid $color;
+        margin-top: $margin_top;
+        margin-bottom: $margin_bottom;
+        }  
+    } 
+    @if $direction == bottom {
+        &:before {
+        content:'';
+        position: absolute;
+        top: $top; left: $left; right: $right; bottom: $bottom;
+        border: $size solid transparent;    
+        border-top: $size solid $color;
+        margin-top: $margin_top;
+        margin-bottom: $margin_bottom;
+        }
+    }
+}
+
+/* 
+Usage
+
+.block {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    @include arrow(right,red,5px,auto,auto,0,0,auto,-5px);  
+}
+*/
+
+/// FOR FLEX
+
+@mixin flex {
+    display: -webkit-box;
+    display: -ms-flexbox; 
+    display: -webkit-flex; 
+    display: flex;         
+}
+@mixin flex_justify {
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+@mixin flex_wrap {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+@mixin flex_row_wrap {
+    flex-flow: row wrap; 
+    -ms-flex-flow: row wrap; 
+}
+@mixin flex_align_items($position) {
+    align-items: $position;
+    -ms-flex-pack: $position;
+}
+
+@mixin flex_grid ($child_class, $column_count, $items_width) {
+    @include flex_justify;
+    @include flex_row_wrap;
+    
+    &:after {
+        content: '';
+        display: block;
+        width: 0px;
+        margin: 0 auto;
+        height: 1px;
+    }
+
+    .#{$child_class} {
+        width: $items_width;
+    }
+
+    $margin: calc((100% - #{$items_width}*#{$column_count})/(#{$column_count} - 1)); 
+
+    .#{$child_class}:last-child, .#{$child_class}:nth-last-child(2) {
+        margin-left: $margin;
+    }
+
+    @if $column_count == 3 {        
+        .#{$child_class}:nth-child(3n+1), .#{$child_class}:nth-child(3n):not(:last-child) {
+            margin-left: 0; 
+        }       
+    }   
+
+    @if $column_count == 4 {        
+        .#{$child_class}:nth-last-child(3) {
+            margin-left: $margin;
+        }
+
+        .#{$child_class}:nth-child(4n+1),
+        .#{$child_class}:nth-child(4n):not(:last-child), 
+        .#{$child_class}:nth-child(4n+3):not(:last-child):not(:nth-last-child(2)) {
+            margin-left: 0 ;
+        }
+    }
+    @if $column_count == 5 {        
+        .#{$child_class}:nth-last-child(3), .#{$child_class}:nth-last-child(4)  {
+            margin-left: $margin;
+        }
+
+        .#{$child_class}:nth-child(5n+1), .#{$child_class}:nth-child(5n):not(:last-child), 
+        .#{$child_class}:nth-child(5n-1):not(:nth-last-child(1)):not(:nth-last-child(2)), 
+        .#{$child_class}:nth-child(5n-2):not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) {
+            margin-left: 0 ;
+        }       
+    }   
+}
+/* usage
+.container {
+    @include flex_grid(grid_tile, 4, 22%);
+}
+* column_count could be 3,4 or 5
+*/
+
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin site_width {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include respond-to(tablet) {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    @include respond-to(mobile) {
+        padding: 0 15px;
+    }
+}
+
+// font awesome 
+
+@mixin fa ($unicode:auto,$pseudo:before,$font_size:inherit,$color:inherit,$margin_right:auto,$margin_left:auto) {
+    &:#{$pseudo} {
+        font-family: 'FontAwesome';
+        content: $unicode; 
+        margin-right: $margin_right;
+        margin-left: $margin_left;
+        font-size: $font_size;
+        color: $color;
+    }
+}
+
+
+/* usage
+    .item {
+        @include fa ($fa-var-facebook,before,16px,#fff);
+    }
+*/
+
+
+@mixin fa_absolute ($unicode:auto,$pseudo:before,$font_size:inherit,$color:inherit,$top:auto,$right:auto,$bottom:auto,$left:auto,$font_weight:normal) {
+    position: relative;
+
+    &:#{$pseudo} {
+        position: absolute;
+        top: $top;
+        right: $right;
+        bottom: $bottom;
+        left: $left;
+        font-family: 'FontAwesome';
+        content: $unicode;
+        font-weight: $font_weight;
+        font-size: $font_size;
+        color: $color; 
+
+        @if ($left==50%) and ($top==50%) {
+            transform: translate(-50%,-50%); 
+        }
+        @if ($top==50%) and not ($left==50%) { 
+            transform: translateY(-50%); 
+        }
+        @if ($left==50%) and not ($top==50%) { 
+            transform: translateX(-50%);  
+        } 
+    } 
+}
+/* usage
+    .item {
+        @include fa_absolute ($fa-var-facebook,before,16px,#fff,50%);
+    }
+*/
+
+
+@mixin underline {
+    text-decoration: underline;
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+@mixin barbell_style($state:auto) {
+    @include respond-to(no-mobile) {
+        position: relative;
+        display: block;
+        border-top: 1px solid transparent; 
+        
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            width: 3px;
+            height: 12px;
+            top: -6px; 
+            transition: left .3s, right .3s;
+        }
+
+        @if ($state == active) { 
+
+            border-top: 1px solid $text_color;
+
+            &:before,
+            &:after,
+            span:before,
+            span:after {
+                background: $text_color;
+            }
+
+            span:before {
+                right: 100%;
+            }
+
+            span:after {
+                left: 100%;
+            }
+
+            &:after {
+                left: calc(100% + 5px);
+            }
+
+            &:before {
+                right: calc(100% + 5px);
+            }
+           
+        }
+
+        @if ($state == hover) { 
+            &:after {
+                left: calc(100% + 7px);
+            }
+
+            &:before {
+                right: calc(100% + 7px);
+            }
+            
+            span {
+                &:before {
+                    right: calc(100% + 3px);
+                }
+
+                &:after {
+                    left: calc(100% + 3px);
+                }
+            }
+            
+            &:after {
+                left: calc(100% + 5px);
+            }
+
+            &:before {
+                right: calc(100% + 5px);
+            }
+
+            &:hover {
+                border-top: 1px solid $text_color;
+
+                &:before,
+                &:after,
+                span:before,
+                span:after {
+                    background: $text_color;
+                }
+
+                span:before {
+                    right: 100%;
+                }
+
+                span:after {
+                    left: 100%;
+                }
+            }
+        }
+
+       span {
+            display: block;
+            padding: 5px 4px 0px 4px;
+            
+            &:before,
+            &:after {
+                position: absolute;
+                content: '';
+                width: 3px;
+                height: 16px;
+                top: -8px;
+                transition: left .3s, right .3s;
+            }
+        }
+    }
+}
+
+@mixin justify_inline_blocks {
+    text-align: justify;
+    font-size: 0.1px;
+
+    &:after {
+        content: '';
+        width: 100%;
+        overflow: hidden;
+        height: 0.1px;
+        display: inline-block;
+    }
+
+    & > div,
+    & > li {
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+    }
+}
+
+@mixin uppercase {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

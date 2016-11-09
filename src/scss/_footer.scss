@@ -1,0 +1,7 @@
+.footer {
+    @include site_width;
+
+    border-top: 1px solid #000;
+    padding: 40px;
+    margin-top: 40px;
+}

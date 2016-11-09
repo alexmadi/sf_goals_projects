@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+   
+}
+
+.main {
+    @include site_width;
+    @include clearfix;
+}
+
+a {
+    color: #000;
+
+    @include underline;
+}
