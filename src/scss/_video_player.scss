@@ -483,10 +483,11 @@ $input_range_color_2: $panel_color_1;
     top: -120px;
     left: 0;
     width: 160px;
-    height: 90px;
+    height: 92px;
     background-position-x: 0px;
     background-position-y: 0;
-
+    z-index: 1001;
+    display: none;
 }
 
 .player_1_wrapper {
@@ -496,6 +497,8 @@ $input_range_color_2: $panel_color_1;
 }
 
 .player_2_wrapper {
+    margin-top: 100px;
+
     .screen_tooltip {
         background: url('../img/sprite_2.png')  no-repeat;
     }
